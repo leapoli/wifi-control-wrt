@@ -15,22 +15,63 @@
 #
 #You should have received a copy of the GNU General Public License
 #along with this program.  If not, see <http://www.gnu.org/licenses/>
+
 morningStart=93000
 morningEnd=123000
 eveningStart=170000
 eveningEnd=203000
+
+interface="wlan0"
+
+# Return data in format HHMMSS
+
 probe=$( date | awk '{print $4}' | sed 's/://g' | sed 's/^0*//' )
+
+# Check if wlan0 is activated. Search for word "RUNNING"
+
+keyWord='FUNCIONANDO'
+
+wirelessActivated=$(ifconfig $interface| grep -cs $keyWord)
+
 #Shows the date probed
 #echo $probe
+
+# Morning: started
 if [ $probe -gt $morningStart ] && [ $probe -lt $morningEnd ]
 then
-#	echo "Enabled"
-	ifconfig wlan0 up
+
+	# If is turned off, then start. 
+	# Else, do nothing cause it's already on.
+	if [ $wirelessActivated -eq 0 ]
+	then	
+		echo "Status: $interface disabled. Action: Not in range, enabling."
+		#ifconfig wlan0 up
+	else
+		echo "Status: $interface enabled. Action: In range, nothing to do."
+	fi
+
+# Evening: started
 elif [ $probe -gt $eveningStart ] && [ $probe -lt $eveningEnd ]
 then
-#	echo "Enabled"
-	ifconfig wlan0 up
+	# If is turned off, then start. 
+	# Else, do nothing cause it's already on.
+	if [ $wirelessActivated -eq 0 ]
+	then	
+		echo "Status: $interface disabled. Action: Not in range, enabling."
+		#ifconfig wlan0 up
+	else
+		echo "Status: $interface enabled. Action: In range, nothing to do."
+	fi
+
+# Whenever else: stopped
 else
-#	echo "Disable"
-	ifconfig wlan0 down
+	# If is turned on, then stop. 
+	# Else, do nothing cause it's already off.
+	if [ $wirelessActivated -eq 1 ]
+	then	
+		echo "Status: $interface enabled. Action: Not in range, disabling."
+		#ifconfig wlan0 down
+	else
+		echo "Status: $interface disabled. Action: In range, nothing to do."
+	fi
 fi
