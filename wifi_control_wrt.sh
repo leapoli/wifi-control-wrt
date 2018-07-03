@@ -1,5 +1,5 @@
 #! /usr/bin/env sh
-#WiFi Control WRT v1.0-sh
+#WiFi Control WRT v1.1-sh
 #
 #Copyright (C) 2017 Leandro Poli
 #
