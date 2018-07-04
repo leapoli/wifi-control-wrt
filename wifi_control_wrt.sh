@@ -29,7 +29,7 @@ probe=$( date | awk '{print $4}' | sed 's/://g' | sed 's/^0*//' )
 
 # Check if wlan0 is activated. Search for word "RUNNING"
 
-keyWord='FUNCIONANDO'
+keyWord='RUNNING'
 
 wirelessActivated=$(ifconfig $interface| grep -cs $keyWord)
 
@@ -44,10 +44,10 @@ then
 	# Else, do nothing cause it's already on.
 	if [ $wirelessActivated -eq 0 ]
 	then	
-		echo "Status: $interface disabled. Action: Not in range, enabling."
-		#ifconfig wlan0 up
+		#echo "Status: $interface disabled. Action: Not in range, enabling."
+		ifconfig wlan0 up
 	else
-		echo "Status: $interface enabled. Action: In range, nothing to do."
+		#echo "Status: $interface enabled. Action: In range, nothing to do."
 	fi
 
 # Evening: started
@@ -57,10 +57,10 @@ then
 	# Else, do nothing cause it's already on.
 	if [ $wirelessActivated -eq 0 ]
 	then	
-		echo "Status: $interface disabled. Action: Not in range, enabling."
-		#ifconfig wlan0 up
+		#echo "Status: $interface disabled. Action: Not in range, enabling."
+		ifconfig wlan0 up
 	else
-		echo "Status: $interface enabled. Action: In range, nothing to do."
+		#echo "Status: $interface enabled. Action: In range, nothing to do."
 	fi
 
 # Whenever else: stopped
@@ -69,9 +69,9 @@ else
 	# Else, do nothing cause it's already off.
 	if [ $wirelessActivated -eq 1 ]
 	then	
-		echo "Status: $interface enabled. Action: Not in range, disabling."
-		#ifconfig wlan0 down
+		#echo "Status: $interface enabled. Action: Not in range, disabling."
+		ifconfig wlan0 down
 	else
-		echo "Status: $interface disabled. Action: In range, nothing to do."
+		#echo "Status: $interface disabled. Action: In range, nothing to do."
 	fi
 fi
