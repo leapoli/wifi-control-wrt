@@ -27,9 +27,9 @@ interface="wlan0"
 
 probe=$( date | awk '{print $4}' | sed 's/://g' | sed 's/^0*//' )
 
-# Check if wlan0 is activated. Search for word "RUNNING"
+# Check if wlan0 is activated. Search for word "UP"
 
-keyWord='RUNNING'
+keyWord='UP'
 
 wirelessActivated=$(ifconfig $interface| grep -cs $keyWord)
 
