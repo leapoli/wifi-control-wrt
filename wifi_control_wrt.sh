@@ -45,7 +45,7 @@ then
 	if [ $wirelessActivated -eq 0 ]
 	then	
 		echo "Status: $interface disabled. Action: Not in range, enabling."
-		ifconfig wlan0 up
+		uci set wireless.@wifi-iface[0].disabled=0 && uci commit wireless && wifi
 	else
 		echo "Status: $interface enabled. Action: In range, nothing to do."
 	fi
@@ -58,7 +58,7 @@ then
 	if [ $wirelessActivated -eq 0 ]
 	then	
 		echo "Status: $interface disabled. Action: Not in range, enabling."
-		ifconfig wlan0 up
+		uci set wireless.@wifi-iface[0].disabled=0 && uci commit wireless && wifi
 	else
 		echo "Status: $interface enabled. Action: In range, nothing to do."
 	fi
@@ -70,7 +70,7 @@ else
 	if [ $wirelessActivated -eq 1 ]
 	then	
 		echo "Status: $interface enabled. Action: Not in range, disabling."
-		ifconfig wlan0 down
+		uci set wireless.@wifi-iface[0].disabled=1 && uci commit wireless && wifi
 	else
 		echo "Status: $interface disabled. Action: In range, nothing to do."
 	fi
