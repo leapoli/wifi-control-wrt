@@ -23,6 +23,10 @@ eveningEnd=203000
 
 interface="wlan0"
 
+# Syncronized NTP
+
+ntpd -q -p ptbtime1.ptb.de
+
 # Return data in format HHMMSS
 
 probe=$( date | awk '{print $4}' | sed 's/://g' | sed 's/^0*//' )
