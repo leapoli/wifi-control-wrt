@@ -1,3 +1,5 @@
+ONLY FOR OPENWRT VERSION:
+
 How to Install?
 
 1°) Create a crontat (if not exist) as root and open it to edit
