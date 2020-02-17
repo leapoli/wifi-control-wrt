@@ -1,4 +1,4 @@
-**ONLY FOR OPENWRT VERSION:
+** ONLY FOR OPENWRT VERSION **
 
 How to Install?
 
